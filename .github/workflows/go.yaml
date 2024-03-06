@@ -14,5 +14,5 @@ jobs:
     - uses: actions/setup-go@v5
       with:
         go-version-file: 'go.mod'
-    - run: mage -v build
+    - run: ./tools/hack/mage -v build
     - run: git diff --exit-code
