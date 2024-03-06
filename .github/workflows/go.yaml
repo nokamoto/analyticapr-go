@@ -14,6 +14,5 @@ jobs:
     - uses: actions/setup-go@v5
       with:
         go-version-file: 'go.mod'
-    - run: .devcontainer/install.sh
     - run: mage -v build
     - run: git diff --exit-code
