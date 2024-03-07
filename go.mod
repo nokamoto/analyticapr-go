@@ -6,7 +6,7 @@ require (
 	github.com/bufbuild/buf v1.29.0
 	github.com/magefile/mage v1.15.0
 	golang.org/x/tools v0.19.0
-	google.golang.org/protobuf v1.32.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (
