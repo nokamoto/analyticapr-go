@@ -24,8 +24,12 @@ func (g *Gh) ListPulls(repo *v1.Repository, since string) ([]*v1.PullRequest, er
 	}
 	r := fmt.Sprintf("%s%s/%s", host, repo.GetOwner(), repo.GetRepo())
 	fields := []string{
+		"number",
+		"title",
 		"author",
+		"comments",
 		"mergedAt",
+		"reviews",
 	}
 	// https://docs.github.com/ja/search-github/searching-on-github/searching-issues-and-pull-requests
 	q := fmt.Sprintf("created:>=%s", since)
@@ -33,10 +37,10 @@ func (g *Gh) ListPulls(repo *v1.Repository, since string) ([]*v1.PullRequest, er
 	if err != nil {
 		return nil, fmt.Errorf("failed to run gh pr list: %w", err)
 	}
-	var res []map[string]any
+	var res pulls
 	if err := json.Unmarshal(bs, &res); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal json: %w", err)
 	}
 	slog.Debug("gh pr list", "output", res)
-	return nil, nil
+	return res.toPullRequests(), nil
 }

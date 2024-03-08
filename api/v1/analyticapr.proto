@@ -6,7 +6,28 @@ import "api/v1/config.proto";
 
 option go_package = "github.com/nokamoto/analyticapr-go/pkg/api/v1";
 
-message PullRequest {}
+message Comment {
+  string author = 1;
+}
+
+message Review {
+  // https://docs.github.com/ja/graphql/reference/enums#pullrequestreviewstate
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    STATE_APPROVED = 1;
+    STATE_COMMENTED = 3;
+  }
+  string author = 1;
+  State state = 2;
+}
+
+message PullRequest {
+  int32 number = 1;
+  string title = 2;
+  string author = 3;
+  repeated Comment comments = 4;
+  repeated Review reviews = 5;
+}
 
 message RepositoryAnalytica {
   Repository repository = 1;
