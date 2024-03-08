@@ -42,8 +42,9 @@ func Genearte() error {
 	return g0("generate", "./...")
 }
 
-func Run() error {
-	return g0("run", "./cmd/analyticapr-go")
+// Debug runs the main in debug mode.
+func Debug() error {
+	return sh.RunWithV(map[string]string{"LOG_LEVEL": "debug"}, "go", "run", "./cmd/analyticapr-go")
 }
 
 // Build runs all the build steps.
