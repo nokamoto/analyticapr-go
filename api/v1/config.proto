@@ -4,4 +4,14 @@ package api.v1;
 
 option go_package = "github.com/nokamoto/analyticapr-go/pkg/api/v1";
 
-message Config {}
+message Repository {
+  string gh = 1;
+  string owner = 2;
+  string repo = 3;
+}
+
+message Config {
+  repeated Repository repositories = 1;
+  // since is a timestamp in the format of "YYYY-MM-DD".
+  string since = 2;
+}
