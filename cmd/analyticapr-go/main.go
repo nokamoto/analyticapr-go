@@ -5,7 +5,8 @@ import (
 	"os"
 
 	"github.com/nokamoto/analyticapr-go/internal/infra/command"
-	v1 "github.com/nokamoto/analyticapr-go/pkg/api/v1"
+	"github.com/nokamoto/analyticapr-go/internal/infra/config"
+	"github.com/nokamoto/analyticapr-go/internal/usecase"
 )
 
 func main() {
@@ -18,13 +19,21 @@ func main() {
 	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		Level: level,
 	})))
-	res, err := command.NewGh().ListPulls(&v1.Repository{
-		Owner: "nokamoto",
-		Repo:  "analyticapr-go",
-	}, "2024-03-06")
+	gh := command.NewGh()
+	file := "config.yaml"
+	if s := os.Getenv("CONFIG_FILE"); s != "" {
+		file = s
+	}
+	cfg, err := config.NewConfig(file)
 	if err != nil {
-		slog.Error("failed to list pulls", "error", err)
+		slog.Error("failed to load config", "error", err)
 		os.Exit(1)
 	}
-	slog.Info("pulls", slog.Any("pulls", res))
+	app := usecase.NewAnalyticapr(gh, cfg)
+	res, err := app.GetAnalytica()
+	if err != nil {
+		slog.Error("failed to get analyticapr", "error", err)
+		os.Exit(1)
+	}
+	slog.Info("analyticapr", "result", res)
 }
