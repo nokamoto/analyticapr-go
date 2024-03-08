@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package api.v1;
+
+import "api/v1/config.proto";
+
+option go_package = "github.com/nokamoto/analyticapr-go/pkg/api/v1";
+
+message PullRequest {}
+
+message RepositoryAnalytica {
+  Repository repository = 1;
+  repeated PullRequest pulls = 2;
+}
+
+message Analyticapr {
+  repeated RepositoryAnalytica repositories = 1;
+}

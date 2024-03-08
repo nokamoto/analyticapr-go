@@ -38,6 +38,14 @@ func Test() error {
 	return g0("test", "./...")
 }
 
+func Genearte() error {
+	return g0("generate", "./...")
+}
+
+func Run() error {
+	return g0("run", "./cmd/analyticapr-go")
+}
+
 // Build runs all the build steps.
 func Build() error {
 	s1 := func(s string, f func(string) error) func() error {
@@ -48,7 +56,9 @@ func Build() error {
 	mg.SerialDeps(
 		s1("format", Buf),
 		s1("generate", Buf),
+		Genearte,
 		Goimports,
+		Test,
 		Tidy,
 	)
 	return nil
