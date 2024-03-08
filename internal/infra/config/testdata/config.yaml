@@ -1,0 +1,7 @@
+repositories:
+- owner: "foo"
+  repo: "bar"
+- owner: "baz"
+  repo: "qux"
+  gh: "example.com"
+since: "2024-03-01"

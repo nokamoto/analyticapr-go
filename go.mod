@@ -9,6 +9,7 @@ require (
 	go.uber.org/mock v0.4.0
 	golang.org/x/tools v0.19.0
 	google.golang.org/protobuf v1.33.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -82,5 +83,4 @@ require (
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240304212257-790db918fca8 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240304212257-790db918fca8 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
