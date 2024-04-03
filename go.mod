@@ -1,6 +1,6 @@
 module github.com/nokamoto/analyticapr-go
 
-go 1.21.7
+go 1.22.2
 
 require (
 	github.com/bufbuild/buf v1.30.0
