@@ -8,7 +8,7 @@ require (
 	github.com/magefile/mage v1.15.0
 	go.uber.org/mock v0.4.0
 	golang.org/x/tools v0.19.0
-	google.golang.org/protobuf v1.33.0
+	google.golang.org/protobuf v1.36.6
 	gopkg.in/yaml.v3 v3.0.1
 )
 
