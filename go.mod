@@ -3,7 +3,7 @@ module github.com/nokamoto/analyticapr-go
 go 1.21.7
 
 require (
-	github.com/bufbuild/buf v1.30.0
+	github.com/bufbuild/buf v1.51.0
 	github.com/google/go-cmp v0.6.0
 	github.com/magefile/mage v1.15.0
 	go.uber.org/mock v0.4.0
